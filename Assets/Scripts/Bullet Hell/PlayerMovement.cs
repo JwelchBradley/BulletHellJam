@@ -62,7 +62,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Instantiate(blinkEffectPrefab, transform.position, transform.rotation);
         transform.position = blinkPos;
-        StopMove();
 
         GameManager.instance.RunFrames(blinkFrames);
     }
