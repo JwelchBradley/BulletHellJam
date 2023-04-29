@@ -25,16 +25,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.instance.runningFrames)
+        if (!GameManager.instance.runningFrames && PlayerController.instance.selectedAbility == 0)
         {
-            if (Input.GetMouseButton(0))
-                ShowMove();
-
-            if (Input.GetMouseButtonDown(1))
-                StopMove();
-
-            if (Input.GetKeyDown(KeyCode.Return) && (Vector2)transform.position != blinkPos)
-                Blink();
+            ShowMove();
         }
     }
 
@@ -59,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         blinkPos = ghost.transform.position;
     }
 
-    void StopMove()
+    public void StopMove()
     {
         blinkPos = transform.position;
         ghost.SetActive(false);
