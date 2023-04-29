@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Tooltip("Max Distance the player can blink")]
     public float blinkDist;
-    public int blinkFrames;
     Vector2 blinkPos;
 
     public static PlayerMovement instance;
@@ -63,6 +62,6 @@ public class PlayerMovement : MonoBehaviour
         Instantiate(blinkEffectPrefab, transform.position, transform.rotation);
         transform.position = blinkPos;
 
-        GameManager.instance.RunFrames(blinkFrames);
+        GameManager.instance.RunFrames(PlayerController.instance.abilityCosts[0]);
     }
 }

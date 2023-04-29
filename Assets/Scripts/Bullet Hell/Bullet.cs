@@ -30,4 +30,9 @@ public class Bullet : MonoBehaviour
             transform.Rotate(transform.forward * turnSpeed);
         }
     }
+
+    private void OnDestroy()
+    {
+        GameManager.instance.bullets.Remove(this);
+    }
 }

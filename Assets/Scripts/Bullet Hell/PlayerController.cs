@@ -58,16 +58,28 @@ public class PlayerController : MonoBehaviour
         float startFrame = GameManager.instance.frameCount;
         while(GameManager.instance.frameCount < startFrame + abilityCosts[1])
         {
-            if (GameManager.instance.frameCount == startFrame + 1)
+            if (GameManager.instance.frameCount == startFrame)
             {
                 Instantiate(lazerCharge, transform.position, transform.rotation);
             }
-            else if(GameManager.instance.frameCount == startFrame + 10)
+            else if(GameManager.instance.frameCount == startFrame + 6)
             {
                 Instantiate(lazerBeam, transform.position, transform.rotation);
+
+                Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position + (transform.up * 20), new Vector2(1, 40), transform.rotation.eulerAngles.z);
+                
+                //RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, transform.up);
+                foreach(Collider2D hit in hits)
+                {
+                    if(hit.transform.gameObject.tag == "Bullet")
+                    {
+                        Destroy(hit.transform.gameObject);
+                    }
+                }
             }
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
         }
         GameManager.instance.runningFrames = false;
     }
+
 }
