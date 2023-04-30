@@ -32,9 +32,6 @@ public class GameManager : MonoBehaviour
         if (runningFrames)
         {
             NextFrame();
-
-            if (frameTarget == frameCount)
-                runningFrames = false;
         }
     }
 
@@ -48,14 +45,5 @@ public class GameManager : MonoBehaviour
 
         frameCount++;
         frameText.text = "Frames: " + frameCount;
-    }
-
-    public void RunFrames(int frames)
-    {
-        if (!runningFrames)
-        {
-            runningFrames = true;
-            frameTarget = frameCount + frames;
-        }
     }
 }
