@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,6 +34,12 @@ public class GameManager : MonoBehaviour
         if (runningFrames)
         {
             NextFrame();
+        }
+
+        if (bullets.Count == 0)
+        {
+            Debug.Log("You Win");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,11 +11,15 @@ public class PlayerController : MonoBehaviour
 
     public PlayerAbility[] abilities;
 
-    public int selectedAbility;
+    public int selectedAbility, health;
 
     public static PlayerController instance;
 
     public GameObject abilityButtonPrefab, abilityButtonParent;
+
+    public TMP_Text healthText;
+
+    public List<GameObject> interactingEnemies;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +27,8 @@ public class PlayerController : MonoBehaviour
         instance = this;
 
         SetupUI();
+
+        healthText.text = "Health: " + health;
     }
 
     void SetupUI()
@@ -176,5 +183,32 @@ public class PlayerController : MonoBehaviour
     void Blink()
     {
         PlayerMovement.instance.Blink();
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.tag == "Bullet")
+        {
+            if (!interactingEnemies.Contains(collision.gameObject))
+            {
+                interactingEnemies.Add(collision.gameObject);
+                health--;
+                healthText.text = "Health: " + health;
+                if (health <= 0)
+                {
+                    Debug.Log("You Lose");
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                }
+            }
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (interactingEnemies.Contains(collision.gameObject))
+        {
+            interactingEnemies.Remove(collision.gameObject);
+        }
     }
 }
