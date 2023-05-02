@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
+    int ghostFrames, betweenGhostFrames;
 
     public PlayerAbility[] abilities;
 
@@ -56,9 +57,71 @@ public class PlayerController : MonoBehaviour
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(screenMousePos);
             transform.up = (Vector3)mousePos - transform.position;
 
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetMouseButtonUp(0))
             {
                 StartCoroutine(UseAbility(selectedAbility));
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (GameManager.instance.runningFrames)
+        {
+            ghostFrames = 0;
+            betweenGhostFrames = 0;
+        }
+        else
+        {
+            betweenGhostFrames++;
+            if (betweenGhostFrames >= GameManager.framesBetweenGhostFrame)
+            {
+                betweenGhostFrames = 0;
+                foreach (FrameEvent fEvent in abilities[selectedAbility].events)
+                {
+                    if (fEvent.frame == ghostFrames)
+                    {
+                        if (fEvent.spawn)
+                        {
+                            GameObject ghostSpawn = Instantiate(fEvent.spawn, transform.position, transform.rotation);
+
+                            SpriteRenderer[] sprs = ghostSpawn.GetComponentsInChildren<SpriteRenderer>();
+                            foreach (SpriteRenderer spr in sprs)
+                            {
+                                Color newColor = spr.color;
+                                newColor.a = 0.2f;
+                                spr.color = newColor;
+                            }
+
+                            ParticleSystem[] parts = ghostSpawn.GetComponentsInChildren<ParticleSystem>();
+                            foreach (ParticleSystem part in parts)
+                            {
+                                ParticleSystem.MainModule main = part.main;
+                                UnityEngine.ParticleSystem.MinMaxGradient grad = main.startColor;
+                                if (grad.gradient != null)
+                                {
+                                    for (int i = 0; i < grad.gradient.alphaKeys.Length; i++)
+                                    {
+                                        grad.gradient.alphaKeys[i].alpha = grad.gradient.alphaKeys[i].alpha * 0.2f;
+                                    }
+                                }
+                                else if(grad.color != null)
+                                {
+                                    Color newColor = grad.color;
+                                    newColor.a = newColor.a * 0.2f;
+                                    grad.color = newColor;
+                                }
+                                main.startColor = grad;
+                            }
+                        }
+                    }
+                }
+                ghostFrames++;
+
+                if (ghostFrames >= GameManager.totalGhostFrames)
+                {
+                    ghostFrames = 0;
+                }
             }
         }
     }

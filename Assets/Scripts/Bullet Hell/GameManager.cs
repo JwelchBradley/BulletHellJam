@@ -5,6 +5,9 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public static int framesBetweenGhostFrame = 3;
+    public static int totalGhostFrames = 10;
+
     [HideInInspector]
     public int frameCount = 1;
     public TMP_Text frameText;
@@ -12,8 +15,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public List<Bullet> bullets;
-
-    float frameTarget;
     
     public bool runningFrames;
 
