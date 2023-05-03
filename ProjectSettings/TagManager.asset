@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bullet
+  - Ghost
+  - Enemy
+  - Player Health Bar
+  - Lerp Bar
   layers:
   - Default
   - TransparentFX

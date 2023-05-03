@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     public PlayerAbility[] abilities;
 
-    public int selectedAbility, health;
+    public int selectedAbility, health, maxHealth;
 
     public static PlayerController instance;
 
@@ -21,6 +22,16 @@ public class PlayerController : MonoBehaviour
 
     public List<GameObject> interactingEnemies;
 
+    #region Health fields
+    public Slider playerHealth;
+
+    public Image lerpPlayerHealth;
+
+    public bool lerpingHealth = false;
+
+    float t = 0;
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +39,11 @@ public class PlayerController : MonoBehaviour
 
         SetupUI();
 
-        healthText.text = "Health: " + health;
+        maxHealth = 3;
+
+        healthText.text = "Health: " + maxHealth;
+
+        InitializeHealth();
     }
 
     void SetupUI()
@@ -69,6 +84,13 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(UseAbility(selectedAbility));
             }
         }
+
+        if (playerHealth != null)
+        {
+            UpdateHealthBar(health, maxHealth);
+            LerpHealth();
+        }
+
     }
 
     private void FixedUpdate()
@@ -211,4 +233,41 @@ public class PlayerController : MonoBehaviour
             interactingEnemies.Remove(collision.gameObject);
         }
     }
+
+    #region Health
+    /// <summary>
+    /// Updates the health bar of the player.
+    /// </summary>
+    /// <param name="health"></param>
+    /// <param name="maxHealth"></param>
+    private void UpdateHealthBar(int health, int maxHealth)
+    {
+            playerHealth.value = (float)health / maxHealth;
+    }
+
+    void LerpHealth()
+    {
+        if (lerpPlayerHealth.fillAmount != playerHealth.value)
+        {
+            lerpPlayerHealth.fillAmount = Mathf.Lerp(lerpPlayerHealth.fillAmount, playerHealth.value, t);
+            t += 0.001f * Time.deltaTime;
+        }
+        else
+        {
+            t = 0;
+        }
+
+        if (lerpPlayerHealth.fillAmount <= playerHealth.value + 0.01f)
+        {
+            lerpPlayerHealth.fillAmount = playerHealth.value;
+        }
+    }
+
+    void InitializeHealth()
+    {
+        lerpPlayerHealth = GameObject.FindGameObjectWithTag("Lerp Bar").GetComponent<Image>();
+        playerHealth = GameObject.FindGameObjectWithTag("Player Health Bar").GetComponent<Slider>();
+    }
+
+    #endregion
 }
