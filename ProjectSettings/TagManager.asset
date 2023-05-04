@@ -7,6 +7,8 @@ TagManager:
   - Bullet
   - Ghost
   - Enemy
+  - Player Health Bar
+  - Lerp Bar
   layers:
   - Default
   - TransparentFX
@@ -43,7 +45,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Water Overlay
-    uniqueID: 1752926651
     locked: 0
