@@ -9,6 +9,16 @@ public class GameManager : MonoBehaviour
     public static int framesBetweenGhostFrame = 3;
     public static int totalGhostFrames = 10;
 
+    public static int CurrentFrameCount
+    {
+        get
+        {
+            if (instance == null) return 0;
+
+            return instance.frameCount;
+        }
+    }
+
     [HideInInspector]
     public int frameCount = 1;
     public TMP_Text frameText;
