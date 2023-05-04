@@ -158,6 +158,11 @@ public class PlayerController : MonoBehaviour
                         Instantiate(fEvent.spawn, transform.position, transform.rotation);
                     if (fEvent.invoke.Length > 0)
                         Invoke(fEvent.invoke, 0f);
+
+                    if (fEvent.cameraShake)
+                    {
+                        Instantiate(fEvent.cameraShake);
+                    }
                 }
             }
             yield return new WaitForFixedUpdate(); 

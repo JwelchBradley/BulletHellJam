@@ -8,6 +8,9 @@ public class FrameEvent
     public int frame;
     public GameObject spawn;
     public string invoke;
+
+    [field:SerializeField]
+    public GameObject cameraShake { get; private set; }
 }
 
 [CreateAssetMenu(fileName = "New Player Ability", menuName = "New Player Ability", order = 1)]

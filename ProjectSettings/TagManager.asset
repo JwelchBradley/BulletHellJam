@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bullet
+  - Ghost
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -41,4 +43,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Water Overlay
+    uniqueID: 1752926651
     locked: 0
