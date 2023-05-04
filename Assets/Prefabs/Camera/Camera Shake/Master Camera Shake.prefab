@@ -85,7 +85,7 @@ MonoBehaviour:
     m_DissipationMode: 2
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: 0, y: -1, z: 0}
+  m_DefaultVelocity: {x: 0, y: -0.5, z: 0}
 --- !u!114 &4324096636436657582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,3 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1695bf7c815d040409933279287ea6d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomInAmount: 0
+  zoomInTime: 0
+  zoomOutTime: 0
+  zoomStayTime: 0

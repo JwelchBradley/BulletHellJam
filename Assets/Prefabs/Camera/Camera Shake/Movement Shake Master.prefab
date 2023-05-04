@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 3756410073269542565, guid: 9bf64cc445312734e9f99daf10c8fff1,
         type: 3}
       propertyPath: m_Name
-      value: Master Camera Shake
+      value: Movement Shake Master
       objectReference: {fileID: 0}
     - target: {fileID: 3756410073269542566, guid: 9bf64cc445312734e9f99daf10c8fff1,
         type: 3}
@@ -66,6 +66,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324096636436657582, guid: 9bf64cc445312734e9f99daf10c8fff1,
+        type: 3}
+      propertyPath: zoomInTime
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324096636436657582, guid: 9bf64cc445312734e9f99daf10c8fff1,
+        type: 3}
+      propertyPath: zoomOutTime
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324096636436657582, guid: 9bf64cc445312734e9f99daf10c8fff1,
+        type: 3}
+      propertyPath: zoomInAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324096636436657582, guid: 9bf64cc445312734e9f99daf10c8fff1,
+        type: 3}
+      propertyPath: zoomStayTime
+      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bf64cc445312734e9f99daf10c8fff1, type: 3}

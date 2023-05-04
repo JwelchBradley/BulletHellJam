@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
         maxHealth = 3;
 
+        if(healthText)
         healthText.text = "Health: " + maxHealth;
 
         InitializeHealth();
@@ -270,8 +271,15 @@ public class PlayerController : MonoBehaviour
 
     void InitializeHealth()
     {
-        lerpPlayerHealth = GameObject.FindGameObjectWithTag("Lerp Bar").GetComponent<Image>();
-        playerHealth = GameObject.FindGameObjectWithTag("Player Health Bar").GetComponent<Slider>();
+        var lerpHealthObj = GameObject.FindGameObjectWithTag("Lerp Bar");
+        
+        if(lerpHealthObj)
+        lerpPlayerHealth = lerpHealthObj.GetComponent<Image>();
+
+        var playerHealthObj = GameObject.FindGameObjectWithTag("Player Health Bar");
+
+        if(playerHealthObj)
+        playerHealth = playerHealthObj.GetComponent<Slider>();
     }
 
     #endregion
