@@ -9,18 +9,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2536555287243509052, guid: db5ce5ae82f4bca4ea19e7c000d21eed,
         type: 3}
-      propertyPath: m_DefaultVelocity.y
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2536555287243509052, guid: db5ce5ae82f4bca4ea19e7c000d21eed,
-        type: 3}
-      propertyPath: m_ImpulseDefinition.m_ImpulseShape
+      propertyPath: m_DefaultVelocity.x
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2536555287243509052, guid: db5ce5ae82f4bca4ea19e7c000d21eed,
         type: 3}
+      propertyPath: m_DefaultVelocity.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2536555287243509052, guid: db5ce5ae82f4bca4ea19e7c000d21eed,
+        type: 3}
+      propertyPath: m_DefaultVelocity.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2536555287243509052, guid: db5ce5ae82f4bca4ea19e7c000d21eed,
+        type: 3}
+      propertyPath: m_ImpulseDefinition.m_ImpulseShape
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2536555287243509052, guid: db5ce5ae82f4bca4ea19e7c000d21eed,
+        type: 3}
       propertyPath: m_ImpulseDefinition.m_ImpulseDuration
-      value: 0.4
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2536555287243509053, guid: db5ce5ae82f4bca4ea19e7c000d21eed,
         type: 3}
@@ -80,12 +90,7 @@ PrefabInstance:
     - target: {fileID: 2536555287243509054, guid: db5ce5ae82f4bca4ea19e7c000d21eed,
         type: 3}
       propertyPath: m_Name
-      value: CS_Water Beam
-      objectReference: {fileID: 0}
-    - target: {fileID: 3103141136011847221, guid: db5ce5ae82f4bca4ea19e7c000d21eed,
-        type: 3}
-      propertyPath: zoomInAmount
-      value: 0
+      value: CS_Charge
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db5ce5ae82f4bca4ea19e7c000d21eed, type: 3}

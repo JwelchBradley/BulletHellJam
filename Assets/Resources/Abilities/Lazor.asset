@@ -22,4 +22,5 @@ MonoBehaviour:
   - frame: 7
     spawn: {fileID: 1774386955092961067, guid: 4213bea1415d949ed90e8eb3d08336cd, type: 3}
     invoke: ShootLazor
-    <cameraShake>k__BackingField: {fileID: 0}
+    <cameraShake>k__BackingField: {fileID: 3157821964732347544, guid: dd50f69a340fc364a8fd5e8b72477411,
+      type: 3}
