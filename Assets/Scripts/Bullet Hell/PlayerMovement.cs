@@ -19,6 +19,10 @@ public class PlayerMovement : MonoBehaviour
 
     public static PlayerMovement instance;
 
+    Ray ray;
+
+    RaycastHit hit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,19 +74,30 @@ public class PlayerMovement : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = -Camera.main.transform.position.z;
         Vector2 clickPos = Camera.main.ScreenToWorldPoint(mousePos);
-        if (Vector3.Distance(clickPos, transform.position) > blinkDist)
-        {
-            Vector2 blinkDir = clickPos - (Vector2)transform.position;
-            blinkDir = blinkDir.normalized;
+        ray = new Ray(transform.position, transform.up);
 
+        if (Physics.Raycast(ray, out hit, blinkDist))
+        {
             ghost.SetActive(true);
-            ghost.transform.position = transform.position + (Vector3)(blinkDir * blinkDist);
+            ghost.transform.position = hit.point;
         }
         else
         {
-            ghost.SetActive(true);
-            ghost.transform.position = clickPos;
+            if (Vector3.Distance(clickPos, transform.position) > blinkDist)
+            {
+                Vector2 blinkDir = clickPos - (Vector2)transform.position;
+                blinkDir = blinkDir.normalized;
+
+                ghost.SetActive(true);
+                ghost.transform.position = transform.position + (Vector3)(blinkDir * blinkDist);
+            }
+            else
+            {
+                ghost.SetActive(true);
+                ghost.transform.position = clickPos;
+            }
         }
+
         blinkPos = ghost.transform.position;
     }
 

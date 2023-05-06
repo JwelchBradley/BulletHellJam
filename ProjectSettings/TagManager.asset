@@ -10,7 +10,7 @@ TagManager:
   - Player Health Bar
   - Lerp Bar
   - Confiner
-  - Bounceable
+  - Wall
   layers:
   - Default
   - TransparentFX
