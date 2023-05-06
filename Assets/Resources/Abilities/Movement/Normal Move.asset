@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108f0c66904364ed59b63b9942600e34, type: 3}
   m_Name: Normal Move
   m_EditorClassIdentifier: 
-  frameCost: 0
+  frameCost: 8
   <AbilityIcon>k__BackingField: {fileID: 21300000, guid: e19bf3f9a7baf9540bac9139746ff17e,
     type: 3}
   <TurnCooldown>k__BackingField: 0
@@ -21,4 +21,6 @@ MonoBehaviour:
   - frame: 0
     spawn: {fileID: 0}
     invoke: NormalMovement
-    <cameraShake>k__BackingField: {fileID: 0}
+    <TickEveryFixedUpdate>k__BackingField: 1
+    <cameraShake>k__BackingField: {fileID: 2796528036492751386, guid: 2bc7450435c55274e894766472c9f58d,
+      type: 3}
