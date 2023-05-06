@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 108f0c66904364ed59b63b9942600e34, type: 3}
-  m_Name: Blink
+  m_Name: Explosive Bubble
   m_EditorClassIdentifier: 
-  frameCost: 4
-  events:
-  - frame: 0
-    spawn: {fileID: 0}
-    invoke: Blink
-    <cameraShake>k__BackingField: {fileID: 2796528036492751386, guid: bc172180bc9d5554b9a3f091bcd1d2ea,
-      type: 3}
+  frameCost: 0
+  <AbilityIcon>k__BackingField: {fileID: 21300000, guid: e19bf3f9a7baf9540bac9139746ff17e,
+    type: 3}
+  <TurnCooldown>k__BackingField: 0
+  CurrentCooldown: 0
+  events: []

@@ -13,6 +13,10 @@ public class PlayerMovement : MonoBehaviour
     public float blinkDist;
     Vector2 blinkPos;
 
+    [SerializeField]
+    private float normalMoveSpeed = 5;
+    private float currentNormalMoveGhostPosition = 0;
+
     public static PlayerMovement instance;
 
     // Start is called before the first frame update
@@ -26,11 +30,34 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!GameManager.instance.runningFrames && PlayerController.instance.selectedAbility == 0)
         {
-            ShowMove();
+            ghost.SetActive(true);
+            ShowNormalMove();
+        }
+        else if (!GameManager.instance.runningFrames && PlayerController.instance.selectedAbility == 1)
+        {
+            ghost.SetActive(true);
+            ShowBlink();
+        }
+        else if (!GameManager.instance.runningFrames && PlayerController.instance.selectedAbility == 2)
+        {
+            ghost.SetActive(true);
+            ShowTailWhip();
+        }
+        else
+        {
+            ghost.SetActive(false);
         }
     }
 
-    void ShowMove()
+    #region Ghosts
+    private void ShowNormalMove()
+    {
+        currentNormalMoveGhostPosition += normalMoveSpeed * Time.deltaTime;
+        currentNormalMoveGhostPosition %= normalMoveSpeed;
+        ghost.transform.position = transform.position + currentNormalMoveGhostPosition * transform.up;
+    }
+
+    void ShowBlink()
     {
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = -Camera.main.transform.position.z;
@@ -51,10 +78,23 @@ public class PlayerMovement : MonoBehaviour
         blinkPos = ghost.transform.position;
     }
 
+    private void ShowTailWhip()
+    {
+
+    }
+    #endregion
+
     public void StopMove()
     {
         blinkPos = transform.position;
         ghost.SetActive(false);
+    }
+
+    #region Movement Abilities
+    public void NormalMovement(float totalFrames)
+    {
+        print("Move" + GameManager.CurrentFrameCount);
+        transform.position = transform.position + normalMoveSpeed * transform.up / totalFrames;
     }
 
     public void Blink()
@@ -62,4 +102,15 @@ public class PlayerMovement : MonoBehaviour
         Instantiate(blinkEffectPrefab, transform.position, transform.rotation);
         transform.position = blinkPos;
     }
+
+    public void TailWhip()
+    {
+
+    }
+
+    public void Parry()
+    {
+
+    }
+    #endregion
 }

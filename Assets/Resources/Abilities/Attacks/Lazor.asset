@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Lazor
   m_EditorClassIdentifier: 
   frameCost: 9
+  <AbilityIcon>k__BackingField: {fileID: 21300000, guid: 443c1ca34d8236140a1140de70736296,
+    type: 3}
+  <TurnCooldown>k__BackingField: 3
+  CurrentCooldown: 0
   events:
   - frame: 0
     spawn: {fileID: 8242134467709799425, guid: 863c08fb51c7043ceaffbc03a9ac7f6d, type: 3}

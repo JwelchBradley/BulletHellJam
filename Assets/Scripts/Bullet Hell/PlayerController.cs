@@ -45,6 +45,16 @@ public class PlayerController : MonoBehaviour
         healthText.text = "Health: " + maxHealth;
 
         InitializeHealth();
+
+        InitializeCooldowns();
+    }
+
+    private void InitializeCooldowns()
+    {
+        foreach (var ability in abilities)
+        {
+            ability.CurrentCooldown = 0;
+        }
     }
 
     void SetupUI()
@@ -53,26 +63,73 @@ public class PlayerController : MonoBehaviour
         {
             PlayerAbility ability = abilities[i];
             GameObject newButton = Instantiate(abilityButtonPrefab, abilityButtonParent.transform);
-            newButton.GetComponentInChildren<TMP_Text>().text = ability.name;
 
+            var buttonImage = newButton.GetComponentInChildren<Image>();
+            if (buttonImage)
+            {
+                buttonImage.sprite = ability.AbilityIcon;
+            }
+
+            var text = newButton.GetComponentInChildren<TMP_Text>();
+            if (text)
+            {
+                text.text = ability.name;
+            }
+
+            /*
             EventTrigger.Entry entry = new EventTrigger.Entry();
             entry.eventID = EventTriggerType.PointerClick;
             int x = i;
             entry.callback.AddListener(delegate { SelectAbility(x); });
-            newButton.GetComponent<EventTrigger>().triggers.Add(entry);
+            newButton.GetComponent<EventTrigger>().triggers.Add(entry);*/
         }
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        SelectNewAbilityInput();
 
+        UseAbilityInput();
+
+        if (playerHealth != null)
+        {
+            UpdateHealthBar(health, maxHealth);
+            LerpHealth();
+        }
+    }
+
+    #region Abilities
+    private void SelectNewAbilityInput()
+    {
         if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
             SelectAbility(0);
+        }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
             SelectAbility(1);
-        
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SelectAbility(2);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            SelectAbility(3);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            SelectAbility(4);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            SelectAbility(5);
+        }
+    }
 
+    private void UseAbilityInput()
+    {
         if (!GameManager.instance.runningFrames)
         {
             Vector3 screenMousePos = Input.mousePosition;
@@ -85,13 +142,6 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(UseAbility(selectedAbility));
             }
         }
-
-        if (playerHealth != null)
-        {
-            UpdateHealthBar(health, maxHealth);
-            LerpHealth();
-        }
-
     }
 
     private void FixedUpdate()
@@ -169,6 +219,12 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator UseAbility(int ability)
     {
+        if (!abilities[ability].CanUseAbility) yield break;
+
+        UpdateAbilityCooldowns();
+
+        abilities[ability].CurrentCooldown = abilities[ability].TurnCooldown;
+
         GameManager.instance.runningFrames = true;
         float startFrame = GameManager.instance.frameCount;
         while(GameManager.instance.frameCount < startFrame + abilities[ability].frameCost)
@@ -187,13 +243,27 @@ public class PlayerController : MonoBehaviour
                         Instantiate(fEvent.cameraShake);
                     }
                 }
+                else if (fEvent.TickEveryFixedUpdate)
+                {
+                    if (fEvent.invoke.Length > 0)
+                        Invoke(fEvent.invoke, 0f);
+                }
             }
             yield return new WaitForFixedUpdate(); 
         }
+
         GameManager.instance.runningFrames = false;
     }
 
+    private void UpdateAbilityCooldowns()
+    {
+        foreach (var ability in abilities)
+        {
+            ability.CurrentCooldown = (int)Mathf.Clamp(ability.CurrentCooldown-1, 0, Mathf.Infinity);
+        }
+    }
 
+    #region Ability Actions/Invokes
     void ShootLazor()
     {
         Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position + (transform.up * 20), new Vector2(1, 40), transform.rotation.eulerAngles.z);
@@ -208,11 +278,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void NormalMovement()
+    {
+        PlayerMovement.instance.NormalMovement(abilities[0].frameCost);
+    }
+
     void Blink()
     {
         PlayerMovement.instance.Blink();
     }
 
+    private void Parry()
+    {
+
+    }
+    #endregion
+    #endregion
+
+    #region Enemy/player collisions
     public void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log(collision.gameObject.name);
@@ -239,6 +322,7 @@ public class PlayerController : MonoBehaviour
             interactingEnemies.Remove(collision.gameObject);
         }
     }
+    #endregion
 
     #region Health
     /// <summary>

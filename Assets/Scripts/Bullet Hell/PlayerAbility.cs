@@ -9,6 +9,9 @@ public class FrameEvent
     public GameObject spawn;
     public string invoke;
 
+    [field: SerializeField]
+    public bool TickEveryFixedUpdate { get; private set; }
+
     [field:SerializeField]
     public GameObject cameraShake { get; private set; }
 }
@@ -17,6 +20,24 @@ public class FrameEvent
 public class PlayerAbility : ScriptableObject
 {
     public int frameCost;
+
+    [field:SerializeField]
+    public Sprite AbilityIcon { get; private set; }
+
+    #region Cooldown
+    [field:SerializeField]
+    public int TurnCooldown { get; private set; }
+
+    [HideInInspector] public int CurrentCooldown = 0;
+
+    public bool CanUseAbility
+    {
+        get
+        {
+            return CurrentCooldown == 0;
+        }
+    }
+    #endregion
 
     public FrameEvent[] events;
 }
