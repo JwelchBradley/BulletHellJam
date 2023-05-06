@@ -2743,6 +2743,11 @@ PrefabInstance:
       propertyPath: abilityButtonParent
       value: 
       objectReference: {fileID: 1301525949}
+    - target: {fileID: 3490072688707990821, guid: df4cba8975478a64cbe986f79308ac3b,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df4cba8975478a64cbe986f79308ac3b, type: 3}
 --- !u!4 &1355089619287046677 stripped
