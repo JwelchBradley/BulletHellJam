@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1355089620267352110}
   - component: {fileID: 1355089620267352109}
   - component: {fileID: 5279979564380227348}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,6 @@ MonoBehaviour:
   abilities:
   - {fileID: 11400000, guid: 951a7d926e6e3f44b8d9a4447ba9893d, type: 2}
   - {fileID: 11400000, guid: 3b02658312d7847e68bcc39d60c8d91a, type: 2}
-  - {fileID: 11400000, guid: 6596d15cd48bfc9429afb1013daa3e8f, type: 2}
   - {fileID: 11400000, guid: 782643c64038c744bab1651cf35397f2, type: 2}
   - {fileID: 11400000, guid: a68d5c9d995c648abbe758ab3c8e5538, type: 2}
   - {fileID: 11400000, guid: 47c1b226c6a62fe499edf8b28348f1df, type: 2}
@@ -135,6 +134,8 @@ MonoBehaviour:
   healthText: {fileID: 0}
   interactingEnemies: []
   bubble: {fileID: 6579967961901511829, guid: 202dd2fea1c546749828ef9a36149de5, type: 3}
+  bubblesAngle: 10
+  explosiveBubble: {fileID: 0}
   playerHealth: {fileID: 0}
   lerpPlayerHealth: {fileID: 0}
   lerpingHealth: 0
@@ -161,6 +162,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1355089620267352104}
     m_Modifications:
+    - target: {fileID: 1193546079862771708, guid: d9fe442344e601c4684b4616e2e2883d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1193546079862771709, guid: d9fe442344e601c4684b4616e2e2883d,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -225,6 +231,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 1193546081274631701, guid: d9fe442344e601c4684b4616e2e2883d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9fe442344e601c4684b4616e2e2883d, type: 3}
@@ -294,11 +305,6 @@ PrefabInstance:
     - target: {fileID: 7919627328276167801, guid: 132632bfdc03775478f54cef23d74dd3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7919627328276167802, guid: 132632bfdc03775478f54cef23d74dd3,
-        type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7919627328276167805, guid: 132632bfdc03775478f54cef23d74dd3,

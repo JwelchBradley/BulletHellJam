@@ -17,11 +17,18 @@ public class PlayerMovement : MonoBehaviour
     private float normalMoveSpeed = 5;
     private float currentNormalMoveGhostPosition = 0;
 
+    private Rigidbody rigidbody;
+
     public static PlayerMovement instance;
 
     Ray ray;
 
     RaycastHit hit;
+
+    private void Awake()
+    {
+        rigidbody = GetComponent<Rigidbody>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
             ghost.SetActive(true);
             ShowBlink();
         }
-        else if(!GameManager.instance.runningFrames && (PlayerController.instance.selectedAbility == 0 || PlayerController.instance.selectedAbility == 2))
+        else if(!GameManager.instance.runningFrames && (PlayerController.instance.selectedAbility == 0)) //|| PlayerController.instance.selectedAbility == 2))
         {
 
         }
@@ -54,11 +61,11 @@ public class PlayerMovement : MonoBehaviour
             ghost.SetActive(true);
             ShowNormalMove();
         }
-        else if (!GameManager.instance.runningFrames && PlayerController.instance.selectedAbility == 2)
+        /*else if (!GameManager.instance.runningFrames && PlayerController.instance.selectedAbility == 2)
         {
             ghost.SetActive(true);
             ShowTailWhip();
-        }
+        }*/
     }
 
     #region Ghosts
@@ -116,7 +123,6 @@ public class PlayerMovement : MonoBehaviour
     #region Movement Abilities
     public void NormalMovement(float totalFrames)
     {
-        print("Move" + GameManager.CurrentFrameCount);
         transform.position = transform.position + normalMoveSpeed * transform.up / totalFrames;
     }
 

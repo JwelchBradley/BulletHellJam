@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Explosive Bubble
   m_EditorClassIdentifier: 
   frameCost: 10
-  <Keybind>k__BackingField: 54
+  <Keybind>k__BackingField: 53
   <AbilityIcon>k__BackingField: {fileID: 21300000, guid: e19bf3f9a7baf9540bac9139746ff17e,
     type: 3}
   <TurnCooldown>k__BackingField: 2
@@ -21,6 +21,7 @@ MonoBehaviour:
   events:
   - frame: 0
     spawn: {fileID: 0}
+    <GhostOnlySpawn>k__BackingField: {fileID: 0}
     invoke: ExplosiveBubble
     <TickEveryFixedUpdate>k__BackingField: 0
     <cameraShake>k__BackingField: {fileID: 3157821964732347544, guid: 4a5bd582f91a56a4297fb5a915e61677,

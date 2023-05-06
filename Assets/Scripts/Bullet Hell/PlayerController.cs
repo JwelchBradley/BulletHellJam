@@ -24,7 +24,18 @@ public class PlayerController : MonoBehaviour
 
     public List<GameObject> interactingEnemies;
 
+    #region Abilities
+    #region Basic Bubble Attack
+    [Header("Basic Bubble Attack")]
     [SerializeField] private GameObject bubble;
+    [SerializeField] private float bubblesAngle = 10;
+    #endregion
+
+    #region Explosive Bubble Attack
+    [Header("Explosive Bubble Attack")]
+    [SerializeField] private GameObject explosiveBubble;
+    #endregion
+    #endregion
 
     #region Health fields
     public Slider playerHealth;
@@ -170,13 +181,14 @@ public class PlayerController : MonoBehaviour
             if (betweenGhostFrames >= GameManager.framesBetweenGhostFrame)
             {
                 betweenGhostFrames = 0;
+
                 foreach (FrameEvent fEvent in abilities[selectedAbility].events)
                 {
                     if (fEvent.frame == ghostFrames)
                     {
                         if (fEvent.spawn)
                         {
-                            GameObject ghostSpawn = Instantiate(fEvent.spawn, transform.position, transform.rotation);
+                            GameObject ghostSpawn = Instantiate(fEvent.spawn, transform.position, transform.rotation, transform);
 
                             SpriteRenderer[] sprs = ghostSpawn.GetComponentsInChildren<SpriteRenderer>();
                             foreach (SpriteRenderer spr in sprs)
@@ -205,6 +217,20 @@ public class PlayerController : MonoBehaviour
                                     grad.color = newColor;
                                 }
                                 main.startColor = grad;
+                            }
+                        }
+                        else if (fEvent.GhostOnlySpawn)
+                        {
+                            var extraAngle = 0.0f;
+
+                            GameObject ghostSpawn = Instantiate(fEvent.GhostOnlySpawn, transform.position, transform.rotation);
+                            ghostSpawn.transform.rotation *= fEvent.GhostOnlySpawn.transform.rotation;
+
+                            ghostSpawn.transform.parent = transform;
+
+                            if (ghostSpawn.TryGetComponent(out Bullet bullet))
+                            {
+                                Destroy(bullet.gameObject, 1.0f);
                             }
                         }
                     }
@@ -268,7 +294,26 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForFixedUpdate(); 
         }
 
+        ChangeAbilityIfOnCooldown(ability);
+
         GameManager.instance.runningFrames = false;
+    }
+
+    private void ChangeAbilityIfOnCooldown(int ability)
+    {
+        return;
+
+        if (abilities[ability].TurnCooldown != 0)
+        {
+            if (ability <= 1)
+            {
+                SelectAbility(0);
+            }
+            else
+            {
+                SelectAbility(2);
+            }
+        }
     }
 
     private void UpdateAbilityCooldowns()
@@ -291,12 +336,17 @@ public class PlayerController : MonoBehaviour
 
     private void BubbleShot2()
     {
-        Instantiate(bubble, transform.position, transform.rotation * Quaternion.Euler(new Vector3(0, 0, 15)));
+        Instantiate(bubble, transform.position, transform.rotation * Quaternion.Euler(new Vector3(0, 0, bubblesAngle)));
     }
 
     private void BubbleShot3()
     {
-        Instantiate(bubble, transform.position, transform.rotation * Quaternion.Euler(new Vector3(0, 0, -15)));
+        Instantiate(bubble, transform.position, transform.rotation * Quaternion.Euler(new Vector3(0, 0, -bubblesAngle)));
+    }
+
+    private void ExplosiveBubble()
+    {
+        Instantiate(explosiveBubble, transform.position, transform.rotation);
     }
 
     void ShootLazor()

@@ -11,15 +11,16 @@ TagManager:
   - Lerp Bar
   - Confiner
   - Wall
+  - Bounceable
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Bubble
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Ghost
   - 
   - 
   - 

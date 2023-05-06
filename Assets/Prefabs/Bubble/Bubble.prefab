@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6579967961901511850}
   - component: {fileID: 6579967961901511854}
   - component: {fileID: 987695885238429308}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6579967961901511829}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -117,7 +117,9 @@ MonoBehaviour:
   homing: 0
   moveSpeed: 1
   turnSpeed: 0
+  lifeTime: -1
   ShouldBounce: 1
+  isPlayerOwned: 0
 --- !u!54 &987695885238429308
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -126,8 +128,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6579967961901511829}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 10000
+  m_Drag: 1000
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
@@ -148,7 +150,7 @@ GameObject:
   - component: {fileID: 6579967962341743616}
   - component: {fileID: 6579967962341743619}
   - component: {fileID: 6129748329000860340}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ghost Bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +187,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6579967962341743629}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -228,7 +230,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6579967962341743629}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -250,7 +252,9 @@ MonoBehaviour:
   homing: 0
   moveSpeed: 0
   turnSpeed: 0
+  lifeTime: -1
   ShouldBounce: 1
+  isPlayerOwned: 1
 --- !u!54 &6129748329000860340
 Rigidbody:
   m_ObjectHideFlags: 0

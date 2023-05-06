@@ -7,6 +7,12 @@ public class FrameEvent
 {
     public int frame;
     public GameObject spawn;
+
+
+    [field: SerializeField]
+    public GameObject GhostOnlySpawn { get; private set; }
+
+
     public string invoke;
 
     [field: SerializeField]

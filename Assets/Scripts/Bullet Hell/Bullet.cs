@@ -16,10 +16,19 @@ public class Bullet : MonoBehaviour
     [Tooltip("The Bullet's turn speed (right) per frame [BECOMES POSITIVE LERP IF HOMING]")]
     public float turnSpeed;
 
+    private float timeOfSpawn = 0;
+    [SerializeField] private float lifeTime = -1;
     [SerializeField] private bool ShouldBounce = false;
+    [SerializeField] private bool isPlayerOwned = false;
+
+    private void Awake()
+    {
+        timeOfSpawn = GameManager.CurrentFrameCount;
+    }
 
     private void Start()
     {
+        if(!isPlayerOwned)
         GameManager.instance.bullets.Add(this);
     }
 
@@ -68,6 +77,10 @@ public class Bullet : MonoBehaviour
                 }
             }
         }
+        else if(lifeTime > 0 && timeOfSpawn+lifeTime < GameManager.CurrentFrameCount)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void ResetGhost()
@@ -77,16 +90,26 @@ public class Bullet : MonoBehaviour
         ghost.transform.rotation = transform.rotation;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            print("Reflect: " + Vector3.Reflect(transform.up, collision.contacts[0].normal));
+            transform.up = Vector3.Reflect(transform.up, collision.contacts[0].normal);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Wall"))
         {
-            transform.right = -transform.right;
+            //transform.forward = Vector3.Reflect(transform.up, o);
         }
     }
 
     private void OnDestroy()
     {
-        GameManager.instance.bullets.Remove(this);
+        if (!isPlayerOwned)
+            GameManager.instance.bullets.Remove(this);
     }
 }

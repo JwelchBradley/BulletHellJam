@@ -9,6 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1193546079862771708, guid: d9fe442344e601c4684b4616e2e2883d,
         type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1193546079862771708, guid: d9fe442344e601c4684b4616e2e2883d,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -77,5 +82,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1193546081274631701, guid: d9fe442344e601c4684b4616e2e2883d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1193546081274631698, guid: d9fe442344e601c4684b4616e2e2883d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d9fe442344e601c4684b4616e2e2883d, type: 3}
