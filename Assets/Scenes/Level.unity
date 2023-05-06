@@ -1327,6 +1327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghost: {fileID: 1246702434}
+  damage: 0
   homing: 0
   moveSpeed: 0.5
   turnSpeed: 0
@@ -1533,6 +1534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghost: {fileID: 2145348052}
+  damage: 0
   homing: 0
   moveSpeed: 0.3
   turnSpeed: 6
@@ -1654,6 +1656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghost: {fileID: 799547729}
+  damage: 0
   homing: 0
   moveSpeed: 0.3
   turnSpeed: -6
@@ -3049,6 +3052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghost: {fileID: 891121267}
+  damage: 0
   homing: 1
   moveSpeed: 0.3
   turnSpeed: 0

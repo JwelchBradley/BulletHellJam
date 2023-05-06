@@ -22,6 +22,9 @@ public class PlayerAbility : ScriptableObject
     public int frameCost;
 
     [field:SerializeField]
+    public KeyCode Keybind { get; private set; }
+
+    [field:SerializeField]
     public Sprite AbilityIcon { get; private set; }
 
     #region Cooldown

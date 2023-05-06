@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
 
     public PlayerAbility[] abilities;
 
+    private List<AbilityButton> abilityButtons = new List<AbilityButton>();
+
     public int selectedAbility, health, maxHealth;
 
     public static PlayerController instance;
@@ -47,6 +49,8 @@ public class PlayerController : MonoBehaviour
         InitializeHealth();
 
         InitializeCooldowns();
+
+        SelectAbility(0);
     }
 
     private void InitializeCooldowns()
@@ -64,16 +68,14 @@ public class PlayerController : MonoBehaviour
             PlayerAbility ability = abilities[i];
             GameObject newButton = Instantiate(abilityButtonPrefab, abilityButtonParent.transform);
 
-            var buttonImage = newButton.GetComponentInChildren<Image>();
-            if (buttonImage)
+            var abilityButton = newButton.GetComponentInChildren<AbilityButton>();
+            if (abilityButton)
             {
-                buttonImage.sprite = ability.AbilityIcon;
-            }
-
-            var text = newButton.GetComponentInChildren<TMP_Text>();
-            if (text)
-            {
-                text.text = ability.name;
+                abilityButtons.Add(abilityButton);
+                abilityButton.SetAbilityNameText(ability.name);
+                abilityButton.SetAbilityKeybindText(ability.Keybind.ToString());
+                abilityButton.SetAbilityIcon(ability.AbilityIcon);
+                abilityButton.SetCooldown(0);
             }
 
             /*
@@ -102,6 +104,15 @@ public class PlayerController : MonoBehaviour
     #region Abilities
     private void SelectNewAbilityInput()
     {
+        for(int i = 0; i < abilities.Length; i++)
+        {
+            if (Input.GetKeyDown(abilities[i].Keybind))
+            {
+                SelectAbility(i);
+            }
+        }
+
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SelectAbility(0);
@@ -125,7 +136,7 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha6))
         {
             SelectAbility(5);
-        }
+        }*/
     }
 
     private void UseAbilityInput()
@@ -211,10 +222,12 @@ public class PlayerController : MonoBehaviour
         if (ability >= abilities.Length)
             return;
 
-        if (selectedAbility == 0)
+        if (selectedAbility == 0 && PlayerMovement.instance)
             PlayerMovement.instance.StopMove();
 
+        abilityButtons[selectedAbility].SetNormalColor();
         selectedAbility = ability;
+        abilityButtons[selectedAbility].SetSelectedColor();
     }
 
     public IEnumerator UseAbility(int ability)
@@ -224,6 +237,7 @@ public class PlayerController : MonoBehaviour
         UpdateAbilityCooldowns();
 
         abilities[ability].CurrentCooldown = abilities[ability].TurnCooldown;
+        abilityButtons[ability].SetCooldown(abilities[ability].CurrentCooldown);
 
         GameManager.instance.runningFrames = true;
         float startFrame = GameManager.instance.frameCount;
@@ -257,9 +271,12 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateAbilityCooldowns()
     {
-        foreach (var ability in abilities)
+        for (int i = 0; i < abilities.Length; i++)
         {
-            ability.CurrentCooldown = (int)Mathf.Clamp(ability.CurrentCooldown-1, 0, Mathf.Infinity);
+            var ability = abilities[i];
+
+            ability.CurrentCooldown = (int)Mathf.Clamp(ability.CurrentCooldown - 1, 0, Mathf.Infinity);
+            abilityButtons[i].SetCooldown(ability.CurrentCooldown);
         }
     }
 

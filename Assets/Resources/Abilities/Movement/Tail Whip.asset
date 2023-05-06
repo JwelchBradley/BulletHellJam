@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Tail Whip
   m_EditorClassIdentifier: 
   frameCost: 0
+  <Keybind>k__BackingField: 51
   <AbilityIcon>k__BackingField: {fileID: 21300000, guid: 443c1ca34d8236140a1140de70736296,
     type: 3}
-  <TurnCooldown>k__BackingField: 0
+  <TurnCooldown>k__BackingField: 2
   CurrentCooldown: 0
   events: []
