@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Player Health Bar
   - Lerp Bar
+  - Confiner
   layers:
   - Default
   - TransparentFX
