@@ -86,8 +86,6 @@ public class GameManager : MonoBehaviour
 
         foreach(Bullet bullet in PlayerBullets)
         {
-            print("PlayerBullet Exists");
-
             bullet.Move();
         }
 
