@@ -46,5 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frameCount: 1
   frameText: {fileID: 0}
-  bullets: []
+  numLevels: 2
+  currentLevel: 0
   runningFrames: 0
+  gameWon: 0

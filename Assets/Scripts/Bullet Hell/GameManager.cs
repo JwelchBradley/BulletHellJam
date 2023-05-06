@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public List<List<Bullet>> ListOfBulletLists = new List<List<Bullet>>();
+    public List<Bullet> PlayerBullets = new List<Bullet>();
 
     public int numLevels;
     public int currentLevel;
@@ -59,6 +60,8 @@ public class GameManager : MonoBehaviour
 
         if (!gameWon)
         {
+            if (ListOfBulletLists.Count == 0 || ListOfBulletLists.Count <= currentLevel) return;
+
             if (ListOfBulletLists[currentLevel].Count == 0)
             {
                 currentLevel++;
@@ -76,9 +79,15 @@ public class GameManager : MonoBehaviour
 
     public void NextFrame()
     {
-
         foreach(Bullet bullet in ListOfBulletLists[currentLevel])
         {
+            bullet.Move();
+        }
+
+        foreach(Bullet bullet in PlayerBullets)
+        {
+            print("PlayerBullet Exists");
+
             bullet.Move();
         }
 

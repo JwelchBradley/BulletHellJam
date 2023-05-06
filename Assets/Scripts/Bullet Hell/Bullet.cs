@@ -29,11 +29,32 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        GameManager.instance.ListOfBulletLists[level-1].Add(this);
+        AddToLevelList();
+    }
+
+    private void AddToLevelList()
+    {
+        if (isPlayerOwned)
+        {
+            GameManager.instance.PlayerBullets.Add(this);
+        }
+        else
+        {
+            if (level <= 0 || level >= GameManager.instance.ListOfBulletLists.Count) return;
+            else
+            {
+                GameManager.instance.ListOfBulletLists[level - 1].Add(this);
+            }
+        }
     }
 
     public void Move(bool _ghost = false)
     {
+        if (!_ghost && isPlayerOwned)
+        {
+            print("Move");
+        }
+
         GameObject obj = gameObject;
         if (_ghost)
             obj = ghost;
@@ -109,6 +130,13 @@ public class Bullet : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameManager.instance.ListOfBulletLists[level-1].Remove(this);
+        if (isPlayerOwned)
+        {
+            GameManager.instance.PlayerBullets.Remove(this);
+        }
+        else
+        {
+            GameManager.instance.ListOfBulletLists[level - 1].Remove(this);
+        }
     }
 }
