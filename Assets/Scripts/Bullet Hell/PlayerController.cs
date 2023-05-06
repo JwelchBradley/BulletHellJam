@@ -221,7 +221,7 @@ public class PlayerController : MonoBehaviour
             if (!interactingEnemies.Contains(collision.gameObject))
             {
                 interactingEnemies.Add(collision.gameObject);
-                health--;
+                health = health - collision.gameObject.GetComponent<Bullet>().damage;
                 healthText.text = "Health: " + health;
                 if (health <= 0)
                 {

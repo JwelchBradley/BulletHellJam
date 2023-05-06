@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Bullet : MonoBehaviour
 {
     public GameObject ghost;
+    public int damage;
     int ghostFrames;
     int betweenGhostFrames;
 
