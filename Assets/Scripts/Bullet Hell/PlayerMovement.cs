@@ -28,20 +28,14 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.instance.runningFrames && PlayerController.instance.selectedAbility == 0)
-        {
-            ghost.SetActive(true);
-            ShowNormalMove();
-        }
-        else if (!GameManager.instance.runningFrames && PlayerController.instance.selectedAbility == 1)
+        if (!GameManager.instance.runningFrames && PlayerController.instance.selectedAbility == 1)
         {
             ghost.SetActive(true);
             ShowBlink();
         }
-        else if (!GameManager.instance.runningFrames && PlayerController.instance.selectedAbility == 2)
+        else if(!GameManager.instance.runningFrames && (PlayerController.instance.selectedAbility == 0 || PlayerController.instance.selectedAbility == 2))
         {
-            ghost.SetActive(true);
-            ShowTailWhip();
+
         }
         else
         {
@@ -49,10 +43,24 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (!GameManager.instance.runningFrames && PlayerController.instance.selectedAbility == 0)
+        {
+            ghost.SetActive(true);
+            ShowNormalMove();
+        }
+        else if (!GameManager.instance.runningFrames && PlayerController.instance.selectedAbility == 2)
+        {
+            ghost.SetActive(true);
+            ShowTailWhip();
+        }
+    }
+
     #region Ghosts
     private void ShowNormalMove()
     {
-        currentNormalMoveGhostPosition += normalMoveSpeed * Time.deltaTime;
+        currentNormalMoveGhostPosition += normalMoveSpeed * Time.fixedDeltaTime;
         currentNormalMoveGhostPosition %= normalMoveSpeed;
         ghost.transform.position = transform.position + currentNormalMoveGhostPosition * transform.up;
     }

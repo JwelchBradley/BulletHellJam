@@ -16,6 +16,8 @@ public class Bullet : MonoBehaviour
     [Tooltip("The Bullet's turn speed (right) per frame [BECOMES POSITIVE LERP IF HOMING]")]
     public float turnSpeed;
 
+    [SerializeField] private bool ShouldBounce = false;
+
     private void Start()
     {
         GameManager.instance.bullets.Add(this);
@@ -46,7 +48,7 @@ public class Bullet : MonoBehaviour
             if (GameManager.instance.runningFrames)
             {
                 ghost.SetActive(false);
-                ghostFrames = 0;
+                ResetGhost();
                 betweenGhostFrames = 0;
             }
             else
@@ -61,12 +63,25 @@ public class Bullet : MonoBehaviour
 
                     if (ghostFrames >= GameManager.totalGhostFrames)
                     {
-                        ghostFrames = 0;
-                        ghost.transform.position = transform.position;
-                        ghost.transform.rotation = transform.rotation;
+                        ResetGhost();
                     }
                 }
             }
+        }
+    }
+
+    private void ResetGhost()
+    {
+        ghostFrames = 0;
+        ghost.transform.position = transform.position;
+        ghost.transform.rotation = transform.rotation;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Bounceable"))
+        {
+            transform.up = -transform.up;
         }
     }
 

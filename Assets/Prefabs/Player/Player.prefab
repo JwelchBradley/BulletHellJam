@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 1355089620267352111}
   - component: {fileID: 1355089620267352110}
   - component: {fileID: 1355089620267352109}
-  - component: {fileID: 1355089620267352108}
-  - component: {fileID: 1355089620267352099}
+  - component: {fileID: 5279979564380227348}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -135,56 +134,26 @@ MonoBehaviour:
   abilityButtonParent: {fileID: 0}
   healthText: {fileID: 0}
   interactingEnemies: []
+  bubble: {fileID: 6579967961901511829, guid: 202dd2fea1c546749828ef9a36149de5, type: 3}
   playerHealth: {fileID: 0}
   lerpPlayerHealth: {fileID: 0}
   lerpingHealth: 0
---- !u!61 &1355089620267352108
-BoxCollider2D:
+--- !u!54 &5279979564380227348
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355089620267352098}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!50 &1355089620267352099
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1355089620267352098}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_Mass: 100000
+  m_Drag: 10
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_UseGravity: 0
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 56
+  m_CollisionDetection: 2
 --- !u!1001 &170693691795095250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -325,6 +294,11 @@ PrefabInstance:
     - target: {fileID: 7919627328276167801, guid: 132632bfdc03775478f54cef23d74dd3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7919627328276167802, guid: 132632bfdc03775478f54cef23d74dd3,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7919627328276167805, guid: 132632bfdc03775478f54cef23d74dd3,

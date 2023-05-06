@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
 
     public List<GameObject> interactingEnemies;
 
+    [SerializeField] private GameObject bubble;
+
     #region Health fields
     public Slider playerHealth;
 
@@ -281,6 +283,22 @@ public class PlayerController : MonoBehaviour
     }
 
     #region Ability Actions/Invokes
+    #region Attack
+    private void BubbleShot1()
+    {
+        Instantiate(bubble, transform.position, transform.rotation);
+    }
+
+    private void BubbleShot2()
+    {
+        Instantiate(bubble, transform.position, transform.rotation * Quaternion.Euler(new Vector3(0, 0, 15)));
+    }
+
+    private void BubbleShot3()
+    {
+        Instantiate(bubble, transform.position, transform.rotation * Quaternion.Euler(new Vector3(0, 0, -15)));
+    }
+
     void ShootLazor()
     {
         Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position + (transform.up * 20), new Vector2(1, 40), transform.rotation.eulerAngles.z);
@@ -294,7 +312,9 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    #endregion
 
+    #region Movement
     private void NormalMovement()
     {
         PlayerMovement.instance.NormalMovement(abilities[0].frameCost);
@@ -309,6 +329,7 @@ public class PlayerController : MonoBehaviour
     {
 
     }
+    #endregion
     #endregion
     #endregion
 
