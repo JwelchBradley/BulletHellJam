@@ -36,7 +36,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Fresnel_Power: 0.3
-    - _Opacity: 0.5
+    - _Opacity: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Reflection_Divide_Amount: -17.28

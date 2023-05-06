@@ -79,9 +79,9 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Bounceable"))
+        if (other.gameObject.CompareTag("Wall"))
         {
-            transform.up = -transform.up;
+            transform.right = -transform.right;
         }
     }
 
