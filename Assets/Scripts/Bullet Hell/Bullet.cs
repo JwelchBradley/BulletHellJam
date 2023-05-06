@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
 {
     public GameObject ghost;
     public int damage;
+    public int level;
     int ghostFrames;
     int betweenGhostFrames;
 
@@ -28,8 +29,7 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        if(!isPlayerOwned)
-        GameManager.instance.bullets.Add(this);
+        GameManager.instance.ListOfBulletLists[level-1].Add(this);
     }
 
     public void Move(bool _ghost = false)
@@ -109,7 +109,6 @@ public class Bullet : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (!isPlayerOwned)
-            GameManager.instance.bullets.Remove(this);
+        GameManager.instance.ListOfBulletLists[level-1].Remove(this);
     }
 }

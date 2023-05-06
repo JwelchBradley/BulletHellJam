@@ -25,13 +25,24 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
-    public List<Bullet> bullets;
+    public List<List<Bullet>> ListOfBulletLists = new List<List<Bullet>>();
+
+    public int numLevels;
+    public int currentLevel;
+    //public List<Bullet> bullets;
     
     public bool runningFrames;
 
+    public bool gameWon = false;
+
     void Awake()
     {
-        bullets = new List<Bullet>();
+        ListOfBulletLists = new List<List<Bullet>>(numLevels);
+
+        for (int i = 0; i < numLevels; i++)
+        {
+            ListOfBulletLists.Add(new List<Bullet>());
+        }
 
         frameText.text = "Frames: " + frameCount;
 
@@ -41,22 +52,32 @@ public class GameManager : MonoBehaviour
     // Fixed Update so that the actual framerate doesnt matter
     void FixedUpdate()
     {
-        if (runningFrames)
+        if (runningFrames && !gameWon)
         {
             NextFrame();
         }
 
-        if (bullets.Count == 0)
+        if (!gameWon)
         {
-            Debug.Log("You Win");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if (ListOfBulletLists[currentLevel].Count == 0)
+            {
+                currentLevel++;
+                Debug.Log("You Win");
+
+                if (currentLevel == numLevels)
+                {
+                    Debug.Log("You beat the game!");
+                    gameWon = true;
+                }
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
     }
 
     public void NextFrame()
     {
 
-        foreach(Bullet bullet in bullets)
+        foreach(Bullet bullet in ListOfBulletLists[currentLevel])
         {
             bullet.Move();
         }
