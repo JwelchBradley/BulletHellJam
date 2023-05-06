@@ -75,8 +75,6 @@ public class CameraShakeInstanceHandler : MonoBehaviour
         var zoomOutTimer = zoomOutTime;
         var zoomStayTimer = zoomStayTime;
 
-        print("Zoom in amount: " + zoomInAmount);
-
         while(zoomInTimer > 0.0f)
         {
             zoomInTimer -= Time.deltaTime;

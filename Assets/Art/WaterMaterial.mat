@@ -23,14 +23,18 @@ Material:
   m_Name: WaterMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 7e3d1a2a7b441354486aa0ee3f360127,
     type: 3}
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses:
+  - DepthOnly
+  - SHADOWCASTER
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -64,17 +68,27 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlphaClip: 0
+    - _Blend: 0
+    - _CastShadows: 0
+    - _Cull: 2
+    - _DstBlend: 10
     - _EnableExternalAlpha: 0
     - _GradientNoiseStrength: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RippleDensity: 15
+    - _RippleDensity: 800
     - _RippleSpeed: 0.8
     - _Slimness: 5
+    - _SrcBlend: 5
     - _StartingTimeOffset: 20
+    - _Surface: 1
     - _TileSPeed: 2
     - _TilingSpeed: 0
     - _Water_Opacity: 0.1
+    - _ZTest: 4
+    - _ZWrite: 0
+    - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 0, g: 0.74800014, b: 1, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
