@@ -58,4 +58,16 @@ MonoBehaviour:
     outputChannel: {fileID: 2101597039525888240, guid: 665224352e6e1b04f95e9d1f565b2ef3,
       type: 2}
     srce: {fileID: 0}
+  - name: Tail Whip
+    clip:
+    - {fileID: 8300000, guid: 4a6bfa7fd569e6e4ebfd54b614204933, type: 3}
+    - {fileID: 8300000, guid: d4dad8925038a4342878a3c7b946a93d, type: 3}
+    volume: 1
+    pitch: 1
+    doesLoop: 0
+    multiSound: 1
+    pitchRandomness: 1
+    outputChannel: {fileID: 2101597039525888240, guid: 665224352e6e1b04f95e9d1f565b2ef3,
+      type: 2}
+    srce: {fileID: 0}
   playMenuMusic: 1
