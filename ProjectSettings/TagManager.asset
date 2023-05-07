@@ -12,6 +12,8 @@ TagManager:
   - Confiner
   - Wall
   - Bounceable
+  - Pearl
+  - Coral
   layers:
   - Default
   - TransparentFX

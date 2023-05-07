@@ -118,6 +118,16 @@ public class Bullet : MonoBehaviour
             print("Reflect: " + Vector3.Reflect(transform.up, collision.contacts[0].normal));
             transform.up = Vector3.Reflect(transform.up, collision.contacts[0].normal);
         }
+
+        if (collision.gameObject.CompareTag("Coral"))
+        {
+            print("Reflect: " + Vector3.Reflect(transform.up, collision.contacts[0].normal));
+            transform.up = Vector3.Reflect(transform.up, collision.contacts[0].normal);
+            if (gameObject.tag != "Ghost")
+            {
+                collision.gameObject.GetComponent<Coral>().coralHealth--;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)

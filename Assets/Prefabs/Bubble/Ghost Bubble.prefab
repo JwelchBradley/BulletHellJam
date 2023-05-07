@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost Bubble
       objectReference: {fileID: 0}
+    - target: {fileID: 6579967961901511829, guid: 202dd2fea1c546749828ef9a36149de5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ghost
+      objectReference: {fileID: 0}
     - target: {fileID: 6579967961901511849, guid: 202dd2fea1c546749828ef9a36149de5,
         type: 3}
       propertyPath: m_RootOrder
@@ -81,6 +86,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579967962341743629, guid: 202dd2fea1c546749828ef9a36149de5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ghost
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 202dd2fea1c546749828ef9a36149de5, type: 3}
