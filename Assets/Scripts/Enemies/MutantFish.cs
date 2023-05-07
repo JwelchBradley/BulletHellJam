@@ -44,6 +44,14 @@ public class MutantFish : EnemyBehavior
 
     public override void ShootProjectile()
     {
+        StartCoroutine(InstantiateBullet());
+    }
+
+    IEnumerator InstantiateBullet()
+    {
+        yield return new WaitForSeconds(0.5f);
+
         Instantiate(projectile, transform.parent.position, Quaternion.identity);
+
     }
 }
