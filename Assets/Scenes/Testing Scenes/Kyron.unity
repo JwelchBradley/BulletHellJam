@@ -1434,6 +1434,9 @@ MonoBehaviour:
   turnSpeed: -6
   lifeTime: -1
   ShouldBounce: 0
+  isExplosive: 0
+  explodeObject: {fileID: 0}
+  amoundOfExplodeObjects: 0
   isPlayerOwned: 0
 --- !u!212 &1012602000
 SpriteRenderer:
@@ -1539,7 +1542,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1157421010}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98bbe5f2d44e65441b1cfdfd03440416, type: 3}
   m_Name: 
@@ -1550,6 +1553,25 @@ MonoBehaviour:
   player: {fileID: 0}
   moveSpeed: 4
   bulletSpeed: 0
+  damage: 0
+--- !u!114 &1157421016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157421010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ddb82bf6e62b524dafb5cee1c6c2ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: 0
+  projectile: {fileID: 0}
+  player: {fileID: 0}
+  moveSpeed: 0
+  bulletSpeed: 0
+  damage: 5
 --- !u!1 &1204637470
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,6 +1713,9 @@ MonoBehaviour:
   turnSpeed: 6
   lifeTime: -1
   ShouldBounce: 0
+  isExplosive: 0
+  explodeObject: {fileID: 0}
+  amoundOfExplodeObjects: 0
   isPlayerOwned: 0
 --- !u!212 &1453471199
 SpriteRenderer:
@@ -1902,6 +1927,9 @@ MonoBehaviour:
   turnSpeed: 0
   lifeTime: -1
   ShouldBounce: 0
+  isExplosive: 0
+  explodeObject: {fileID: 0}
+  amoundOfExplodeObjects: 0
   isPlayerOwned: 0
 --- !u!212 &1588373079
 SpriteRenderer:

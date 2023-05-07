@@ -17,6 +17,7 @@ public abstract class EnemyBehavior : MonoBehaviour
     public GameObject player;
     public float moveSpeed;
     public float bulletSpeed;
+    public float damage;
 
     public virtual void InitializeFields()
     {
