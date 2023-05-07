@@ -60,6 +60,7 @@ public class Bullet : MonoBehaviour
             obj = ghost;
 
         obj.transform.position = obj.transform.position + (obj.transform.up * moveSpeed);
+
         if (homing)
         {
             Vector3 dir = PlayerMovement.instance.transform.position - obj.transform.position;
@@ -128,6 +129,11 @@ public class Bullet : MonoBehaviour
                 collision.gameObject.GetComponent<Coral>().coralHealth--;
             }
         }
+
+        if (collision.gameObject.tag == "Bubble")
+        {
+            Destroy(collision.gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -135,6 +141,11 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.CompareTag("Wall"))
         {
             //transform.forward = Vector3.Reflect(transform.up, o);
+        }
+
+        if (other.gameObject.tag == "Bullet")
+        {
+            Destroy(other.gameObject);
         }
     }
 
