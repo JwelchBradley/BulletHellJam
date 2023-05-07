@@ -22,8 +22,10 @@ public class PlayerMovement : MonoBehaviour
     public static PlayerMovement instance;
 
     Ray ray;
+    Ray ghostRay;
 
     RaycastHit hit;
+    RaycastHit ghostHit;
 
     private void Awake()
     {
@@ -71,9 +73,30 @@ public class PlayerMovement : MonoBehaviour
     #region Ghosts
     private void ShowNormalMove()
     {
-        currentNormalMoveGhostPosition += normalMoveSpeed * Time.fixedDeltaTime;
-        currentNormalMoveGhostPosition %= normalMoveSpeed;
-        ghost.transform.position = transform.position + currentNormalMoveGhostPosition * transform.up;
+        ghostRay = new Ray(transform.position, transform.up);
+
+        if (Physics.Raycast(ghostRay, out ghostHit, normalMoveSpeed))
+        {
+            if (ghostHit.collider.gameObject.tag == "Wall")
+            {
+                float _dist = Vector3.Distance(transform.position, ghostHit.point);
+                currentNormalMoveGhostPosition += _dist * Time.fixedDeltaTime;
+                currentNormalMoveGhostPosition %= _dist;
+                ghost.transform.position = transform.position + currentNormalMoveGhostPosition * transform.up;
+            }
+            else
+            {
+                currentNormalMoveGhostPosition += normalMoveSpeed * Time.fixedDeltaTime;
+                currentNormalMoveGhostPosition %= normalMoveSpeed;
+                ghost.transform.position = transform.position + currentNormalMoveGhostPosition * transform.up;
+            }
+        }
+        else
+        {
+            currentNormalMoveGhostPosition += normalMoveSpeed * Time.fixedDeltaTime;
+            currentNormalMoveGhostPosition %= normalMoveSpeed;
+            ghost.transform.position = transform.position + currentNormalMoveGhostPosition * transform.up;
+        }
     }
 
     void ShowBlink()
@@ -123,7 +146,24 @@ public class PlayerMovement : MonoBehaviour
     #region Movement Abilities
     public void NormalMovement(float totalFrames)
     {
-        transform.position = transform.position + normalMoveSpeed * transform.up / totalFrames;
+        ray = new Ray(transform.position, transform.up);
+
+        if (Physics.Raycast(ray, out hit, normalMoveSpeed))
+        {
+            if (hit.collider.gameObject.tag == "Wall")
+            {
+                float _dist = Vector3.Distance(transform.position, hit.point);
+                transform.position = transform.position + _dist * transform.up / totalFrames;
+            }
+            else
+            {
+                transform.position = transform.position + normalMoveSpeed * transform.up / totalFrames;
+            }
+        }
+        else
+        {
+            transform.position = transform.position + normalMoveSpeed * transform.up / totalFrames;
+        }
     }
 
     public void Blink()
