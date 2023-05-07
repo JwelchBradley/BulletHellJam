@@ -73,7 +73,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a68d5c9d995c648abbe758ab3c8e5538, type: 2}
   - {fileID: 11400000, guid: 47c1b226c6a62fe499edf8b28348f1df, type: 2}
   selectedAbility: 0
-  health: 0
+  health: 3
   maxHealth: 0
   abilityButtonPrefab: {fileID: 103410806715770879, guid: 8addfddfbeca642d48b4b01e2b386115,
     type: 3}

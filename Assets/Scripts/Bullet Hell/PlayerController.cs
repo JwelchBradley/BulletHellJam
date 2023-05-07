@@ -423,7 +423,7 @@ public class PlayerController : MonoBehaviour
             {
                 interactingEnemies.Add(collision.gameObject);
                 health = health - collision.gameObject.GetComponent<Bullet>().damage;
-                healthText.text = "Health: " + health;
+                //healthText.text = "Health: " + health;
                 if (health <= 0)
                 {
                     Debug.Log("You Lose");
