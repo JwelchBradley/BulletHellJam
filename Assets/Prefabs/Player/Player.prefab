@@ -52,7 +52,7 @@ MonoBehaviour:
   blinkEffectPrefab: {fileID: 1127808433024270197, guid: aa41a775ff4ba4cb2a9411ae92391924,
     type: 3}
   ghost: {fileID: 6193816576352584119}
-  blinkDist: 3
+  blinkDist: 6
   normalMoveSpeed: 5
 --- !u!114 &1355089620267352109
 MonoBehaviour:
@@ -69,6 +69,7 @@ MonoBehaviour:
   abilities:
   - {fileID: 11400000, guid: 951a7d926e6e3f44b8d9a4447ba9893d, type: 2}
   - {fileID: 11400000, guid: 3b02658312d7847e68bcc39d60c8d91a, type: 2}
+  - {fileID: 11400000, guid: 6596d15cd48bfc9429afb1013daa3e8f, type: 2}
   - {fileID: 11400000, guid: 782643c64038c744bab1651cf35397f2, type: 2}
   - {fileID: 11400000, guid: a68d5c9d995c648abbe758ab3c8e5538, type: 2}
   - {fileID: 11400000, guid: 47c1b226c6a62fe499edf8b28348f1df, type: 2}
