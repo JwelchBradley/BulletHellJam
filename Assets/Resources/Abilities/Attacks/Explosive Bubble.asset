@@ -28,3 +28,4 @@ MonoBehaviour:
     <cameraShake>k__BackingField: {fileID: 3157821964732347544, guid: 4a5bd582f91a56a4297fb5a915e61677,
       type: 3}
     <PlayerAnimationTrigger>k__BackingField: MouthOpen
+    <SoundName>k__BackingField: Explosive Bubble

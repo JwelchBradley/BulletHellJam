@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     // Fixed Update so that the actual framerate doesnt matter
     void FixedUpdate()
     {
-        if (runningFrames && !gameWon)
+        if (runningFrames)
         {
             NextFrame();
         }
@@ -79,9 +79,12 @@ public class GameManager : MonoBehaviour
 
     public void NextFrame()
     {
-        foreach(Bullet bullet in ListOfBulletLists[currentLevel])
+        if(ListOfBulletLists != null && ListOfBulletLists.Count >= currentLevel)
         {
-            bullet.Move();
+            foreach (Bullet bullet in ListOfBulletLists[currentLevel])
+            {
+                bullet.Move();
+            }
         }
 
         foreach(Bullet bullet in PlayerBullets)

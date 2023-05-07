@@ -161,6 +161,11 @@ public class Bullet : MonoBehaviour
         transform.up = Vector3.Reflect(transform.up, normal);
     }
 
+    public void TailWhip()
+    {
+        transform.rotation = Quaternion.Inverse(transform.rotation);
+    }
+
     private void Explode()
     {
         for (int i = 0; i < amoundOfExplodeObjects; i++)

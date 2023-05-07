@@ -22,6 +22,9 @@ public class FrameEvent
 
     [field:SerializeField]
     public string PlayerAnimationTrigger { get; private set; }
+
+    [field: SerializeField]
+    public string SoundName { get; private set; }
 }
 
 [CreateAssetMenu(fileName = "New Player Ability", menuName = "New Player Ability", order = 1)]

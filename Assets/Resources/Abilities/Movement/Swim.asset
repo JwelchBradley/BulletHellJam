@@ -26,3 +26,5 @@ MonoBehaviour:
     <TickEveryFixedUpdate>k__BackingField: 1
     <cameraShake>k__BackingField: {fileID: 2796528036492751386, guid: 2bc7450435c55274e894766472c9f58d,
       type: 3}
+    <PlayerAnimationTrigger>k__BackingField: 
+    <SoundName>k__BackingField: Swim

@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private Animator ghostAnimator;
+    private AudioSource audioSource;
 
     #region Abilities
     #region Basic Bubble Attack
@@ -50,10 +51,15 @@ public class PlayerController : MonoBehaviour
     float t = 0;
     #endregion
 
+    private void Awake()
+    {
+        instance = this;
+        audioSource = GetComponent<AudioSource>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
 
         SetupUI();
 
@@ -284,6 +290,8 @@ public class PlayerController : MonoBehaviour
             {
                 if (fEvent.frame == GameManager.instance.frameCount - startFrame)
                 {
+                    SoundManager.Play(fEvent.SoundName);
+
                     if (fEvent.PlayerAnimationTrigger != "")
                     {
                         PlayerAnimaitonTrigger(fEvent.PlayerAnimationTrigger);
@@ -311,6 +319,13 @@ public class PlayerController : MonoBehaviour
         ChangeAbilityIfOnCooldown(ability);
 
         GameManager.instance.runningFrames = false;
+    }
+
+    private void PlayRandomSound(AudioClip[] clips)
+    {
+        if (audioSource == null || clips == null || clips.Length == 0) return;
+
+        audioSource.PlayOneShot(clips[Random.Range(0, clips.Length)]);
     }
 
     private void ChangeAbilityIfOnCooldown(int ability)

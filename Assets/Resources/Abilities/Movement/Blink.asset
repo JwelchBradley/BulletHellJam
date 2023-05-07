@@ -26,3 +26,5 @@ MonoBehaviour:
     <TickEveryFixedUpdate>k__BackingField: 0
     <cameraShake>k__BackingField: {fileID: 2796528036492751386, guid: bc172180bc9d5554b9a3f091bcd1d2ea,
       type: 3}
+    <PlayerAnimationTrigger>k__BackingField: 
+    <SoundName>k__BackingField: Blink

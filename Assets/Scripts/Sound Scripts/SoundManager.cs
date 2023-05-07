@@ -43,9 +43,11 @@ public class SoundManager : MonoBehaviour
     }
 
     //Plays the selected sound
-    public void Play(string name)
+    public static void Play(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (instance == null || instance.sounds == null) return;
+
+        Sound s = Array.Find(instance.sounds, sound => sound.name == name);
         if (s == null)
         {
             Debug.Log("Sound " + name + " not found. You complete buffoon.");
@@ -65,9 +67,11 @@ public class SoundManager : MonoBehaviour
         s.srce.Play();
     }
 
-    public void Stop(string name)
+    public static void Stop(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (instance == null) return;
+
+        Sound s = Array.Find(instance.sounds, sound => sound.name == name);
         if (s == null)
         {
             Debug.Log("Sound " + name + " not found. You stinkyhead.");

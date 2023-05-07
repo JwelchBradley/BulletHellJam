@@ -28,6 +28,7 @@ MonoBehaviour:
     <cameraShake>k__BackingField: {fileID: 3157821964732347544, guid: d3403392184e1fb4bbc86c96671fc1eb,
       type: 3}
     <PlayerAnimationTrigger>k__BackingField: MouthOpen
+    <SoundName>k__BackingField: Bubble Burst
   - frame: 1
     spawn: {fileID: 0}
     <GhostOnlySpawn>k__BackingField: {fileID: 9077928811011927979, guid: f76438171fece854ca13a089d21a5068,
@@ -37,6 +38,7 @@ MonoBehaviour:
     <cameraShake>k__BackingField: {fileID: 3157821964732347544, guid: d3403392184e1fb4bbc86c96671fc1eb,
       type: 3}
     <PlayerAnimationTrigger>k__BackingField: 
+    <SoundName>k__BackingField: 
   - frame: 2
     spawn: {fileID: 0}
     <GhostOnlySpawn>k__BackingField: {fileID: 9077928811011927979, guid: d4ee5f58555f1c34eb19ddca0dd66ef9,
@@ -46,3 +48,4 @@ MonoBehaviour:
     <cameraShake>k__BackingField: {fileID: 3157821964732347544, guid: d3403392184e1fb4bbc86c96671fc1eb,
       type: 3}
     <PlayerAnimationTrigger>k__BackingField: 
+    <SoundName>k__BackingField: 

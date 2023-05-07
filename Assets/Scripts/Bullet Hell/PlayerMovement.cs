@@ -176,8 +176,19 @@ public class PlayerMovement : MonoBehaviour
         transform.position = blinkPos;
     }
 
-    public void TailWhip(float totalFrames)
+    Vector3 startingTailWhipDir;
+    private int framesUntilNextStartDir = 0;
+
+    public void TailWhip(int totalFrames)
     {
+        if(framesUntilNextStartDir == 0)
+        {
+            framesUntilNextStartDir = totalFrames;
+            startingTailWhipDir = transform.up;
+        }
+
+        framesUntilNextStartDir--;
+
         ray = new Ray(transform.position, transform.up);
 
         if (Physics.Raycast(ray, out hit, normalMoveSpeed))
@@ -185,17 +196,19 @@ public class PlayerMovement : MonoBehaviour
             if (hit.collider.gameObject.tag == "Wall")
             {
                 float _dist = Vector3.Distance(transform.position, hit.point);
-                transform.position = transform.position + _dist * transform.up / totalFrames;
+                transform.position = transform.position + _dist * startingTailWhipDir / totalFrames;
             }
             else
             {
-                transform.position = transform.position + tailwhipMoveDist * transform.up / totalFrames;
+                transform.position = transform.position + tailwhipMoveDist * startingTailWhipDir / totalFrames;
             }
         }
         else
         {
-            transform.position = transform.position + tailwhipMoveDist * transform.up / totalFrames;
+            transform.position = transform.position + tailwhipMoveDist * startingTailWhipDir / totalFrames;
         }
+
+        transform.rotation *= Quaternion.Euler(new Vector3(0, 0, 360 / totalFrames));
     }
 
     public void Parry()
