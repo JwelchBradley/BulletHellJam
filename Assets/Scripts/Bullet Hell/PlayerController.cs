@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
 
     public List<GameObject> interactingEnemies;
 
+    [SerializeField] private Animator playerAnimator;
+    [SerializeField] private Animator ghostAnimator;
+
     #region Abilities
     #region Basic Bubble Attack
     [Header("Basic Bubble Attack")]
@@ -103,6 +106,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (PauseMenuBehavior.IsPaused) return;
+
         SelectNewAbilityInput();
 
         UseAbilityInput();
@@ -186,6 +191,11 @@ public class PlayerController : MonoBehaviour
                 {
                     if (fEvent.frame == ghostFrames)
                     {
+                        if (fEvent.PlayerAnimationTrigger != "")
+                        {
+                            PlayerAnimaitonTrigger(fEvent.PlayerAnimationTrigger);
+                        }
+
                         if (fEvent.spawn)
                         {
                             GameObject ghostSpawn = Instantiate(fEvent.spawn, transform.position, transform.rotation, transform);
@@ -233,6 +243,7 @@ public class PlayerController : MonoBehaviour
                         }
                     }
                 }
+
                 ghostFrames++;
 
                 if (ghostFrames >= GameManager.totalGhostFrames)
@@ -273,7 +284,12 @@ public class PlayerController : MonoBehaviour
             {
                 if (fEvent.frame == GameManager.instance.frameCount - startFrame)
                 {
-                    if(fEvent.spawn)
+                    if (fEvent.PlayerAnimationTrigger != "")
+                    {
+                        PlayerAnimaitonTrigger(fEvent.PlayerAnimationTrigger);
+                    }
+
+                    if (fEvent.spawn)
                         Instantiate(fEvent.spawn, transform.position, transform.rotation);
                     if (fEvent.invoke.Length > 0)
                         Invoke(fEvent.invoke, 0f);
@@ -325,6 +341,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void PlayerAnimaitonTrigger(string animationTrigger)
+    {
+        if (playerAnimator == null) return;
+
+        playerAnimator.SetTrigger(animationTrigger);
+    }
+
     #region Ability Actions/Invokes
     #region Attack
     private void BubbleShot1()
@@ -373,9 +396,9 @@ public class PlayerController : MonoBehaviour
         PlayerMovement.instance.Blink();
     }
 
-    private void Parry()
+    private void TailWhip()
     {
-
+        PlayerMovement.instance.TailWhip(abilities[2].frameCost);
     }
     #endregion
     #endregion

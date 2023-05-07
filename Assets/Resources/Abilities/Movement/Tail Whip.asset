@@ -12,10 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108f0c66904364ed59b63b9942600e34, type: 3}
   m_Name: Tail Whip
   m_EditorClassIdentifier: 
-  frameCost: 0
+  frameCost: 10
   <Keybind>k__BackingField: 51
   <AbilityIcon>k__BackingField: {fileID: 21300000, guid: 9b6bac6cdc99c774e9c9c190e5e998c8,
     type: 3}
-  <TurnCooldown>k__BackingField: 2
+  <TurnCooldown>k__BackingField: 3
   CurrentCooldown: 0
-  events: []
+  events:
+  - frame: 0
+    spawn: {fileID: 0}
+    <GhostOnlySpawn>k__BackingField: {fileID: 0}
+    invoke: TailWhip
+    <TickEveryFixedUpdate>k__BackingField: 1
+    <cameraShake>k__BackingField: {fileID: 2796528036492751386, guid: aab88c881483ad84887e650df3560899,
+      type: 3}
+    <PlayerAnimationTrigger>k__BackingField: TailWhip

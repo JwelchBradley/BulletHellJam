@@ -15,6 +15,10 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private float normalMoveSpeed = 5;
+
+    [SerializeField]
+    private float tailwhipMoveDist = 3;
+
     private float currentNormalMoveGhostPosition = 0;
 
     private Rigidbody rigidbody;
@@ -63,11 +67,11 @@ public class PlayerMovement : MonoBehaviour
             ghost.SetActive(true);
             ShowNormalMove();
         }
-        /*else if (!GameManager.instance.runningFrames && PlayerController.instance.selectedAbility == 2)
+        else if (!GameManager.instance.runningFrames && PlayerController.instance.selectedAbility == 2)
         {
             ghost.SetActive(true);
             ShowTailWhip();
-        }*/
+        }
     }
 
     #region Ghosts
@@ -172,9 +176,26 @@ public class PlayerMovement : MonoBehaviour
         transform.position = blinkPos;
     }
 
-    public void TailWhip()
+    public void TailWhip(float totalFrames)
     {
+        ray = new Ray(transform.position, transform.up);
 
+        if (Physics.Raycast(ray, out hit, normalMoveSpeed))
+        {
+            if (hit.collider.gameObject.tag == "Wall")
+            {
+                float _dist = Vector3.Distance(transform.position, hit.point);
+                transform.position = transform.position + _dist * transform.up / totalFrames;
+            }
+            else
+            {
+                transform.position = transform.position + tailwhipMoveDist * transform.up / totalFrames;
+            }
+        }
+        else
+        {
+            transform.position = transform.position + tailwhipMoveDist * transform.up / totalFrames;
+        }
     }
 
     public void Parry()

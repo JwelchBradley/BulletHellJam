@@ -12,7 +12,6 @@ public class FrameEvent
     [field: SerializeField]
     public GameObject GhostOnlySpawn { get; private set; }
 
-
     public string invoke;
 
     [field: SerializeField]
@@ -20,6 +19,9 @@ public class FrameEvent
 
     [field:SerializeField]
     public GameObject cameraShake { get; private set; }
+
+    [field:SerializeField]
+    public string PlayerAnimationTrigger { get; private set; }
 }
 
 [CreateAssetMenu(fileName = "New Player Ability", menuName = "New Player Ability", order = 1)]

@@ -11,6 +11,7 @@ using UnityEngine.SceneManagement;
 using System;
 using System.Collections;
 using Cinemachine;
+using System.Threading.Tasks;
 
 public class PauseMenuBehavior : MenuBehavior
 {
@@ -42,7 +43,19 @@ public class PauseMenuBehavior : MenuBehavior
         }
     }
 
+    public static bool IsPaused
+    {
+        get
+        {
+            if (Instance == null) return false;
+
+            return Instance.isPaused;
+        }
+    }
+
     bool wasActiveBefore = false;
+
+    private static PauseMenuBehavior Instance;
 
     [Tooltip("The pause menu gameobject")]
     [SerializeField] private GameObject pauseMenu = null;
@@ -54,6 +67,10 @@ public class PauseMenuBehavior : MenuBehavior
     /// </summary>
     private void Awake()
     {
+        Instance = this;
+
+        Cursor.lockState = CursorLockMode.Confined;
+
         StartCoroutine(WaitFadeIn());
     }
 
@@ -75,8 +92,10 @@ public class PauseMenuBehavior : MenuBehavior
     /// <summary>
     /// If the player hits the pause game key, the game is paused.
     /// </summary>
-    public void PauseGame()
+    public async void PauseGame()
     {
+        await Task.Delay(1);
+
         // Opens pause menu and pauses the game
         if (canPause && canClosePauseMenu)
         {
@@ -95,12 +114,11 @@ public class PauseMenuBehavior : MenuBehavior
                 {
                     wasActiveBefore = false;
                 }
-                Cursor.lockState = CursorLockMode.Confined;
+
                 Cursor.visible = true;
             }
             else if(!wasActiveBefore)
             {
-                Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
         }
