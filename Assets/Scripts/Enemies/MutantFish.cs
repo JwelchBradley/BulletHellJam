@@ -7,7 +7,7 @@ public class MutantFish : EnemyBehavior
     // Start is called before the first frame update
     void Start()
     {
-        
+        InitializeFields();
     }
 
     // Update is called once per frame
@@ -18,7 +18,13 @@ public class MutantFish : EnemyBehavior
 
     private void FixedUpdate()
     {
-        
+        gameObject.transform.LookAt(player.transform.position);
+
+        if(GameManager.instance.runningFrames)
+        {
+            MoveEnemy();
+            ShootProjectile();
+        }
     }
 
     public override void MoveEnemy()
@@ -27,16 +33,17 @@ public class MutantFish : EnemyBehavior
 
         if(distance <= 5f)
         {
-
+            ShootProjectile();
         }
-        else if(distance > 5f)
+        else
         {
-
+            gameObject.transform.position += transform.forward * moveSpeed * Time.deltaTime;
         }
+
     }
 
     public override void ShootProjectile()
     {
-        base.ShootProjectile();
+        Instantiate(projectile, transform.parent.position, Quaternion.identity);
     }
 }
