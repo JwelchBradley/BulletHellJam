@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frameCost: 8
   <Keybind>k__BackingField: 51
-  <AbilityIcon>k__BackingField: {fileID: 21300000, guid: cce0f52a35968dd4ab2705b3979e49b1,
+  <AbilityIcon>k__BackingField: {fileID: 21300000, guid: a4ff0be0435f2ea40b6b9115c5ca984e,
     type: 3}
   <TurnCooldown>k__BackingField: 0
   CurrentCooldown: 0

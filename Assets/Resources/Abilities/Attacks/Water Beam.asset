@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 108f0c66904364ed59b63b9942600e34, type: 3}
-  m_Name: Lazor
+  m_Name: Water Beam
   m_EditorClassIdentifier: 
   frameCost: 9
   <Keybind>k__BackingField: 52
-  <AbilityIcon>k__BackingField: {fileID: 21300000, guid: 443c1ca34d8236140a1140de70736296,
+  <AbilityIcon>k__BackingField: {fileID: 21300000, guid: 60969946df08aa34e8867a11f458d87f,
     type: 3}
   <TurnCooldown>k__BackingField: 3
   CurrentCooldown: 0

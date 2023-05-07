@@ -82,7 +82,8 @@ MonoBehaviour:
   interactingEnemies: []
   bubble: {fileID: 6579967961901511829, guid: 202dd2fea1c546749828ef9a36149de5, type: 3}
   bubblesAngle: 10
-  explosiveBubble: {fileID: 0}
+  explosiveBubble: {fileID: 6579967961901511829, guid: f264caa99a537b240b265b20e4fbe770,
+    type: 3}
   playerHealth: {fileID: 0}
   lerpPlayerHealth: {fileID: 0}
   lerpingHealth: 0

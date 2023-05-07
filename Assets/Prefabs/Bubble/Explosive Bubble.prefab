@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6579967961901511854}
   - component: {fileID: 987695885238429308}
   m_Layer: 3
-  m_Name: Bubble
+  m_Name: Explosive Bubble
   m_TagString: Bubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 6579967961901511829}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.93, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6579967962341743618}
@@ -116,13 +116,14 @@ MonoBehaviour:
   damage: 0
   level: 0
   homing: 0
-  moveSpeed: 1
+  moveSpeed: 0.8
   turnSpeed: 0
-  lifeTime: 100
-  ShouldBounce: 1
-  isExplosive: 0
-  explodeObject: {fileID: 0}
-  amoundOfExplodeObjects: 0
+  lifeTime: 75
+  ShouldBounce: 0
+  isExplosive: 1
+  explodeObject: {fileID: 6579967961901511829, guid: 202dd2fea1c546749828ef9a36149de5,
+    type: 3}
+  amoundOfExplodeObjects: 10
   isPlayerOwned: 1
 --- !u!54 &987695885238429308
 Rigidbody:

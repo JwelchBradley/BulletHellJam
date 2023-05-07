@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Bullet : MonoBehaviour
 {
+    private const string ghostTag = "Ghost";
+    private const string coralTag = "Coral";
+    private const string wallTag = "Wall";
+    private const string bulletTag = "Bullet";
+    private const string bubbleTag = "Bubble";
+
     public GameObject ghost;
     public int damage;
     public int level;
@@ -20,6 +26,9 @@ public class Bullet : MonoBehaviour
     private float timeOfSpawn = 0;
     [SerializeField] private float lifeTime = -1;
     [SerializeField] private bool ShouldBounce = false;
+    [SerializeField] private bool isExplosive = false;
+    [SerializeField] private GameObject explodeObject;
+    [SerializeField] private int amoundOfExplodeObjects;
     [SerializeField] private bool isPlayerOwned = false;
 
     private void Awake()
@@ -50,11 +59,6 @@ public class Bullet : MonoBehaviour
 
     public void Move(bool _ghost = false)
     {
-        if (!_ghost && isPlayerOwned)
-        {
-            print("Move");
-        }
-
         GameObject obj = gameObject;
         if (_ghost)
             obj = ghost;
@@ -76,6 +80,11 @@ public class Bullet : MonoBehaviour
     {
         if (ghost)
         {
+            if (lifeTime > 0 && timeOfSpawn + lifeTime < GameManager.CurrentFrameCount)
+            {
+                Destroy(gameObject);
+            }
+
             if (GameManager.instance.runningFrames)
             {
                 ghost.SetActive(false);
@@ -99,10 +108,6 @@ public class Bullet : MonoBehaviour
                 }
             }
         }
-        else if(lifeTime > 0 && timeOfSpawn+lifeTime < GameManager.CurrentFrameCount)
-        {
-            Destroy(gameObject);
-        }
     }
 
     private void ResetGhost()
@@ -114,36 +119,71 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag(wallTag))
         {
-            print("Reflect: " + Vector3.Reflect(transform.up, collision.contacts[0].normal));
-            transform.up = Vector3.Reflect(transform.up, collision.contacts[0].normal);
+            if (ShouldBounce)
+            {
+                BounceObject(collision.contacts[0].normal);
+            }
+
+            if (isExplosive)
+            {
+                Destroy(gameObject);
+            }
         }
 
-        if (collision.gameObject.CompareTag("Coral"))
+        if (collision.gameObject.CompareTag(coralTag))
         {
-            print("Reflect: " + Vector3.Reflect(transform.up, collision.contacts[0].normal));
-            transform.up = Vector3.Reflect(transform.up, collision.contacts[0].normal);
-            if (gameObject.tag != "Ghost")
+            if (ShouldBounce)
+            {
+                BounceObject(collision.contacts[0].normal);
+            }
+
+            if (isExplosive)
+            {
+                Destroy(gameObject);
+            }
+
+            if (gameObject.tag != ghostTag)
             {
                 collision.gameObject.GetComponent<Coral>().coralHealth--;
             }
         }
 
-        if (collision.gameObject.tag == "Bubble")
+        if (collision.gameObject.tag == bubbleTag && !gameObject.CompareTag(bubbleTag))
         {
             Destroy(collision.gameObject);
         }
     }
 
+    private void BounceObject(Vector3 normal)
+    {
+        transform.up = Vector3.Reflect(transform.up, normal);
+    }
+
+    private void Explode()
+    {
+        for (int i = 0; i < amoundOfExplodeObjects; i++)
+        {
+            var explodeBubble = Instantiate(explodeObject, transform.position, Quaternion.identity * Quaternion.Euler(new Vector3(0, 0, (360.0f / amoundOfExplodeObjects) * i)));
+
+            if (gameObject.CompareTag(ghostTag))
+            {
+                Destroy(explodeBubble, 0.25f);
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Wall"))
+        if (isExplosive)
         {
-            //transform.forward = Vector3.Reflect(transform.up, o);
+            if (other.gameObject.tag == bulletTag)
+            {
+                Destroy(gameObject);
+            }
         }
-
-        if (other.gameObject.tag == "Bullet")
+        else if (other.gameObject.tag == bulletTag && ghost != null && other.gameObject.TryGetComponent(out Bullet bullet) && isPlayerOwned != bullet.isPlayerOwned)
         {
             Destroy(other.gameObject);
         }
@@ -151,6 +191,13 @@ public class Bullet : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (this == null) return;
+
+        if (isExplosive)
+        {
+            Explode();
+        }
+
         if (isPlayerOwned)
         {
             GameManager.instance.PlayerBullets.Remove(this);

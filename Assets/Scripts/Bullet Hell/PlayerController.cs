@@ -221,8 +221,6 @@ public class PlayerController : MonoBehaviour
                         }
                         else if (fEvent.GhostOnlySpawn)
                         {
-                            var extraAngle = 0.0f;
-
                             GameObject ghostSpawn = Instantiate(fEvent.GhostOnlySpawn, transform.position, transform.rotation);
                             ghostSpawn.transform.rotation *= fEvent.GhostOnlySpawn.transform.rotation;
 
