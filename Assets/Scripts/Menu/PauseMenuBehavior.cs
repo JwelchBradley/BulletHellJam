@@ -69,7 +69,7 @@ public class PauseMenuBehavior : MenuBehavior
     {
         Instance = this;
 
-        Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.lockState = CursorLockMode.Confined;
 
         StartCoroutine(WaitFadeIn());
     }
@@ -119,7 +119,7 @@ public class PauseMenuBehavior : MenuBehavior
             }
             else if(!wasActiveBefore)
             {
-                Cursor.visible = false;
+                //Cursor.visible = false;
             }
         }
     }
