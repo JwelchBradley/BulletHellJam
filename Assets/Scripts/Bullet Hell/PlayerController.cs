@@ -401,9 +401,58 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        else if (collision.gameObject.tag == "Pearl")
+        {
+            for (int i = 0; i < abilities.Length; i++)
+            {
+                var ability = abilities[i];
+
+                ability.CurrentCooldown = 0;
+                abilityButtons[i].SetCooldown(ability.CurrentCooldown);
+            }
+        }
+    }
+
+    public void OnTriggerEnter(Collider collision)
+    {
+        Debug.Log(collision.gameObject.name);
+        Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.tag == "Bullet")
+        {
+            if (!interactingEnemies.Contains(collision.gameObject))
+            {
+                interactingEnemies.Add(collision.gameObject);
+                health = health - collision.gameObject.GetComponent<Bullet>().damage;
+                healthText.text = "Health: " + health;
+                if (health <= 0)
+                {
+                    Debug.Log("You Lose");
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                }
+            }
+        }
+        else if (collision.gameObject.tag == "Pearl")
+        {
+            for (int i = 0; i < abilities.Length; i++)
+            {
+                var ability = abilities[i];
+
+                ability.CurrentCooldown = 0;
+                abilityButtons[i].SetCooldown(ability.CurrentCooldown);
+            }
+            Destroy(collision.gameObject);
+        }
     }
 
     public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (interactingEnemies.Contains(collision.gameObject))
+        {
+            interactingEnemies.Remove(collision.gameObject);
+        }
+    }
+
+    public void OnTriggerExit(Collider collision)
     {
         if (interactingEnemies.Contains(collision.gameObject))
         {
