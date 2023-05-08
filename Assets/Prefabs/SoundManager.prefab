@@ -70,4 +70,48 @@ MonoBehaviour:
     outputChannel: {fileID: 2101597039525888240, guid: 665224352e6e1b04f95e9d1f565b2ef3,
       type: 2}
     srce: {fileID: 0}
+  - name: Warp
+    clip:
+    - {fileID: 8300000, guid: 6c4a5d786f8249f40845cffddf87384c, type: 3}
+    volume: 1
+    pitch: 1
+    doesLoop: 0
+    multiSound: 0
+    pitchRandomness: 1
+    outputChannel: {fileID: 2101597039525888240, guid: 665224352e6e1b04f95e9d1f565b2ef3,
+      type: 2}
+    srce: {fileID: 0}
+  - name: Laser
+    clip:
+    - {fileID: 8300000, guid: b9c17ba87d53db243913f6813e70d4f4, type: 3}
+    volume: 1
+    pitch: 1
+    doesLoop: 0
+    multiSound: 0
+    pitchRandomness: 0
+    outputChannel: {fileID: 2101597039525888240, guid: 665224352e6e1b04f95e9d1f565b2ef3,
+      type: 2}
+    srce: {fileID: 0}
+  - name: Bubbles
+    clip:
+    - {fileID: 8300000, guid: da6aedb20aa0a1b4c90c4f48152e4648, type: 3}
+    volume: 1
+    pitch: 1
+    doesLoop: 0
+    multiSound: 0
+    pitchRandomness: 0
+    outputChannel: {fileID: 2101597039525888240, guid: 665224352e6e1b04f95e9d1f565b2ef3,
+      type: 2}
+    srce: {fileID: 0}
+  - name: BigBubble
+    clip:
+    - {fileID: 8300000, guid: f5de42e8b16d74542bbc63c168913851, type: 3}
+    volume: 1
+    pitch: 1
+    doesLoop: 0
+    multiSound: 0
+    pitchRandomness: 0
+    outputChannel: {fileID: 2101597039525888240, guid: 665224352e6e1b04f95e9d1f565b2ef3,
+      type: 2}
+    srce: {fileID: 0}
   playMenuMusic: 1
